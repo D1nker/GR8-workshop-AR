@@ -43,6 +43,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         sceneView.delegate = self
         sceneView.automaticallyUpdatesLighting = false
         
@@ -50,6 +52,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         tap.addTarget(self, action: #selector(didTap))
         sceneView.addGestureRecognizer(tap)
     }
+    
     
     // this func from Apple ARKit placing objects demo
     func enableEnvironmentMapWithIntensity(_ intensity: CGFloat) {
@@ -159,6 +162,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let roofNode = Nodes.plane(pieces: 3,
                                    maskYUpperSide: true)
         roofNode.position = SCNVector3(0, Float(Nodes.WALL_HEIGHT), 0)
+        roofNode.eulerAngles = SCNVector3(0, 180.0.degreesToRadians, 0)
+        
+//        let scene = SCNScene()
+//        let particlesNode = SCNNode()
+        let particleSystem = SCNParticleSystem(named: "rain2", inDirectory: nil)
+        roofNode.addParticleSystem(particleSystem!)
+        
+//        roofNode.addChildNode(particlesNode)
+//        sceneView.scene = scene
+        
         wallNode.addChildNode(roofNode)
         
         sceneView.scene.rootNode.addChildNode(wallNode)
@@ -239,4 +252,3 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 
 }
-

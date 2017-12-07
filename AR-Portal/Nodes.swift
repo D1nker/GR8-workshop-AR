@@ -2,8 +2,8 @@
 //  Nodes.swift
 //  AR-Portal
 //
-//  Created by Bjarne Lundgren on 02/07/2017.
-//  Copyright © 2017 Silicon.dk ApS. All rights reserved.
+//  Created by Quentin Faure on 05/12/2017.
+//  Copyright © 2017 Quentin Faure. All rights reserved.
 //
 
 import Foundation
