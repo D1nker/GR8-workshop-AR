@@ -181,20 +181,67 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         func loadAnimations () {
             // Load the character in the idle animation
             let idleScene = SCNScene(named: "fixed.dae")!
+            let logoScene = SCNScene(named: "strangerthings.dae")!
+
+            
             
             // This node will be parent of all the animation models
             let node = SCNNode()
+            let logoNode = SCNNode()
             
             // Add all the child nodes to the parent node
             for child in idleScene.rootNode.childNodes {
                 node.addChildNode(child)
             }
             
+            for child in logoScene.rootNode.childNodes {
+                logoNode.addChildNode(child)
+            }
+            
             // Set up some properties
             node.scale = SCNVector3(0.01, 0.01, 0.01)
+            logoNode.scale = SCNVector3(0.003, 0.003, 0.003)
+            logoNode.position = SCNVector3(-0.5, 1.3, -1)
+
+            node.renderingOrder = 200
+            logoNode.renderingOrder = 200
+            
+//            let maskingXSegment = SCNBox(width: CGFloat(2),
+//                                            height: CGFloat(2.2),
+//                                            length: CGFloat(1),
+//                                            chamferRadius: 0)
+//            maskingXSegment.firstMaterial?.diffuse.contents = UIColor.red
+//            maskingXSegment.firstMaterial?.transparency = 0.000001
+//            maskingXSegment.firstMaterial?.writesToDepthBuffer = true
+//
+//            let maskingXSegmentNode = SCNNode(geometry: maskingXSegment)
+//            maskingXSegmentNode.renderingOrder = 100   //everything inside the portal area must have higher rendering order...
+//
+//
+//            maskingXSegmentNode.position = SCNVector3(true ? CGFloat(2) : -CGFloat(0.02),0,0)
+//
+//            let maskingYSegment = SCNBox(width: CGFloat(2.2) * CGFloat(3),
+//                                         height: CGFloat(2.2) * CGFloat(3),
+//                                         length: CGFloat(1) * CGFloat(3),
+//                                         chamferRadius: 0)
+//            maskingYSegment.firstMaterial?.diffuse.contents = UIColor.red
+//            maskingYSegment.firstMaterial?.transparency = 0.000001
+//            maskingYSegment.firstMaterial?.writesToDepthBuffer = true
+//
+//            let maskingYSegmentNode = SCNNode(geometry: maskingYSegment)
+//            maskingYSegmentNode.renderingOrder = 100   //everything inside the portal area must have higher rendering order...
+//
+//
+//            maskingYSegmentNode.position = SCNVector3(CGFloat(2) * 0.5, true ? CGFloat(0.02) : -CGFloat(0.02),0)
+//            let wrapNode = SCNNode()
+//            wrapNode.addChildNode(maskingXSegmentNode)
+//            wrapNode.addChildNode(maskingYSegmentNode)
+//            wrapNode.addChildNode(node)
             
             // Add the node to the scene
             floorNode.addChildNode(node)
+            floorNode.addChildNode(logoNode)
+
             
             // Load all the DAE animations
             loadAnimation(withKey: "test", sceneName: "fixed", animationIdentifier: "fixed-1")
@@ -206,6 +253,23 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let roofNode = Nodes.plane(pieces: 3,
                                    maskYUpperSide: true)
         roofNode.position = SCNVector3(0, Float(Nodes.WALL_HEIGHT), 0)
+        
+        // Load the character in the idle animation
+        let logoSCN = SCNScene(named: "strangerthings.dae")!
+        
+        // This node will be parent of all the animation models
+        let logoNode = SCNNode()
+        
+        for child in logoSCN.rootNode.childNodes {
+            logoNode.addChildNode(child)
+        }
+        
+        
+        // Set up some properties
+        logoNode.scale = SCNVector3(0.01, 0.01, 0.01)
+        logoNode.renderingOrder = 200
+        
+        roofNode.addChildNode(logoNode)
         
         let rainNode = Nodes.plane(pieces: 3,
                                    maskYUpperSide: true)
@@ -236,8 +300,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let light = SCNLight()
         // [SceneKit] Error: shadows are only supported by spot lights and directional lights
         light.type = .omni
-        light.spotInnerAngle = 70
-        light.spotOuterAngle = 120
+        light.spotInnerAngle = 120
+        light.spotOuterAngle = 180
         light.zNear = 0.01
         light.zFar = 10
         light.castsShadow = true

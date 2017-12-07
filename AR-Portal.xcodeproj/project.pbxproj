@@ -22,6 +22,7 @@
 		73B4B88B1FD9559200B2CCD8 /* demoNORM3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 73B4B8881FD9559200B2CCD8 /* demoNORM3.jpeg */; };
 		73B4B88C1FD9559200B2CCD8 /* texture3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 73B4B8891FD9559200B2CCD8 /* texture3.jpeg */; };
 		73B4B88D1FD9559200B2CCD8 /* fixed.dae in Resources */ = {isa = PBXBuildFile; fileRef = 73B4B88A1FD9559200B2CCD8 /* fixed.dae */; };
+		73B4B88F1FD9926300B2CCD8 /* strangerthings.dae in Resources */ = {isa = PBXBuildFile; fileRef = 73B4B88E1FD9926300B2CCD8 /* strangerthings.dae */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		73B4B8881FD9559200B2CCD8 /* demoNORM3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demoNORM3.jpeg; sourceTree = "<group>"; };
 		73B4B8891FD9559200B2CCD8 /* texture3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = texture3.jpeg; sourceTree = "<group>"; };
 		73B4B88A1FD9559200B2CCD8 /* fixed.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = fixed.dae; sourceTree = "<group>"; };
+		73B4B88E1FD9926300B2CCD8 /* strangerthings.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = strangerthings.dae; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 		709C7D171F09498C002B9025 /* AR-Portal */ = {
 			isa = PBXGroup;
 			children = (
+				73B4B88E1FD9926300B2CCD8 /* strangerthings.dae */,
 				73B4B8881FD9559200B2CCD8 /* demoNORM3.jpeg */,
 				73B4B88A1FD9559200B2CCD8 /* fixed.dae */,
 				73B4B8891FD9559200B2CCD8 /* texture3.jpeg */,
@@ -154,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				516C11721FD8379400AACA62 /* View.xib in Resources */,
+				73B4B88F1FD9926300B2CCD8 /* strangerthings.dae in Resources */,
 				73B4B8861FD94DFE00B2CCD8 /* spark.png in Resources */,
 				709C7D331F09619E002B9025 /* Media.scnassets in Resources */,
 				73B4B88D1FD9559200B2CCD8 /* fixed.dae in Resources */,
