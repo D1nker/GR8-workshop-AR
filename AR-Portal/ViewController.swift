@@ -40,6 +40,26 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
+    var animations = [String: CAAnimation]()
+    var idle:Bool = true
+    
+    func loadAnimation(withKey: String, sceneName:String, animationIdentifier:String) {
+        let sceneURL = Bundle.main.url(forResource: sceneName, withExtension: "dae")
+        let sceneSource = SCNSceneSource(url: sceneURL!, options: nil)
+        
+        if let animationObject = sceneSource?.entryWithIdentifier(animationIdentifier, withClass: CAAnimation.self) {
+            // The animation will only play once
+            animationObject.repeatCount = 1
+            // To create smooth transitions between animations
+            animationObject.fadeInDuration = CGFloat(1)
+            animationObject.fadeOutDuration = CGFloat(0.5)
+            
+            // Store the animation for later use
+            animations[withKey] = animationObject
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -157,22 +177,48 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let floorNode = Nodes.plane(pieces: 3,
                                     maskYUpperSide: false)
         floorNode.position = SCNVector3(0, 0, 0)
+        
+        func loadAnimations () {
+            // Load the character in the idle animation
+            let idleScene = SCNScene(named: "fixed.dae")!
+            
+            // This node will be parent of all the animation models
+            let node = SCNNode()
+            
+            // Add all the child nodes to the parent node
+            for child in idleScene.rootNode.childNodes {
+                node.addChildNode(child)
+            }
+            
+            // Set up some properties
+            node.scale = SCNVector3(0.01, 0.01, 0.01)
+            
+            // Add the node to the scene
+            floorNode.addChildNode(node)
+            
+            // Load all the DAE animations
+            loadAnimation(withKey: "test", sceneName: "fixed", animationIdentifier: "fixed-1")
+        }
+        
+        loadAnimations()
         wallNode.addChildNode(floorNode)
         
         let roofNode = Nodes.plane(pieces: 3,
                                    maskYUpperSide: true)
         roofNode.position = SCNVector3(0, Float(Nodes.WALL_HEIGHT), 0)
-        roofNode.eulerAngles = SCNVector3(0, 180.0.degreesToRadians, 0)
         
-//        let scene = SCNScene()
-//        let particlesNode = SCNNode()
+        let rainNode = Nodes.plane(pieces: 3,
+                                   maskYUpperSide: true)
+        rainNode.position = SCNVector3(0, Float(Nodes.WALL_HEIGHT - CGFloat(0.1)), 0)
+
         let particleSystem = SCNParticleSystem(named: "rain2", inDirectory: nil)
-        roofNode.addParticleSystem(particleSystem!)
-        
+        rainNode.addParticleSystem(particleSystem!)
+
 //        roofNode.addChildNode(particlesNode)
 //        sceneView.scene = scene
-        
-        wallNode.addChildNode(roofNode)
+
+//        wallNode.addChildNode(roofNode)
+        wallNode.addChildNode(rainNode)
         
         sceneView.scene.rootNode.addChildNode(wallNode)
         
@@ -189,11 +235,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         let light = SCNLight()
         // [SceneKit] Error: shadows are only supported by spot lights and directional lights
-        light.type = .spot
+        light.type = .omni
         light.spotInnerAngle = 70
         light.spotOuterAngle = 120
-        light.zNear = 0.00001
-        light.zFar = 5
+        light.zNear = 0.01
+        light.zFar = 10
         light.castsShadow = true
         light.shadowRadius = 200
         light.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)

@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		510E40261FD7301E00B8506A /* ReplayKitRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510E40251FD7301E00B8506A /* ReplayKitRecording.swift */; };
-		516C11691FD8034A00AACA62 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 516C11671FD8034A00AACA62 /* spark.png */; };
-		516C116C1FD8050400AACA62 /* rain2.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 516C116B1FD8050400AACA62 /* rain2.scnp */; };
 		516C11721FD8379400AACA62 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 516C11711FD8379400AACA62 /* View.xib */; };
 		709C7D191F09498C002B9025 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C7D181F09498C002B9025 /* AppDelegate.swift */; };
 		709C7D1B1F09498C002B9025 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C7D1A1F09498C002B9025 /* ViewController.swift */; };
@@ -19,12 +17,15 @@
 		709C7D2B1F094BAE002B9025 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C7D2A1F094BAE002B9025 /* Extensions.swift */; };
 		709C7D301F094C5B002B9025 /* Nodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C7D2F1F094C5B002B9025 /* Nodes.swift */; };
 		709C7D331F09619E002B9025 /* Media.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 709C7D321F09619E002B9025 /* Media.scnassets */; };
+		73B4B8861FD94DFE00B2CCD8 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 73B4B8841FD94DFE00B2CCD8 /* spark.png */; };
+		73B4B8871FD94DFE00B2CCD8 /* rain2.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 73B4B8851FD94DFE00B2CCD8 /* rain2.scnp */; };
+		73B4B88B1FD9559200B2CCD8 /* demoNORM3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 73B4B8881FD9559200B2CCD8 /* demoNORM3.jpeg */; };
+		73B4B88C1FD9559200B2CCD8 /* texture3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 73B4B8891FD9559200B2CCD8 /* texture3.jpeg */; };
+		73B4B88D1FD9559200B2CCD8 /* fixed.dae in Resources */ = {isa = PBXBuildFile; fileRef = 73B4B88A1FD9559200B2CCD8 /* fixed.dae */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		510E40251FD7301E00B8506A /* ReplayKitRecording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayKitRecording.swift; sourceTree = "<group>"; };
-		516C11671FD8034A00AACA62 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
-		516C116B1FD8050400AACA62 /* rain2.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = rain2.scnp; sourceTree = "<group>"; };
 		516C11711FD8379400AACA62 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		709C7D151F09498C002B9025 /* AR-Portal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR-Portal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		709C7D181F09498C002B9025 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +37,11 @@
 		709C7D2A1F094BAE002B9025 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		709C7D2F1F094C5B002B9025 /* Nodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nodes.swift; sourceTree = "<group>"; };
 		709C7D321F09619E002B9025 /* Media.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Media.scnassets; sourceTree = "<group>"; };
+		73B4B8841FD94DFE00B2CCD8 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = ../spark.png; sourceTree = "<group>"; };
+		73B4B8851FD94DFE00B2CCD8 /* rain2.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; name = rain2.scnp; path = ../rain2.scnp; sourceTree = "<group>"; };
+		73B4B8881FD9559200B2CCD8 /* demoNORM3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demoNORM3.jpeg; sourceTree = "<group>"; };
+		73B4B8891FD9559200B2CCD8 /* texture3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = texture3.jpeg; sourceTree = "<group>"; };
+		73B4B88A1FD9559200B2CCD8 /* fixed.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = fixed.dae; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,17 +75,20 @@
 		709C7D171F09498C002B9025 /* AR-Portal */ = {
 			isa = PBXGroup;
 			children = (
+				73B4B8881FD9559200B2CCD8 /* demoNORM3.jpeg */,
+				73B4B88A1FD9559200B2CCD8 /* fixed.dae */,
+				73B4B8891FD9559200B2CCD8 /* texture3.jpeg */,
+				73B4B8841FD94DFE00B2CCD8 /* spark.png */,
+				73B4B8851FD94DFE00B2CCD8 /* rain2.scnp */,
 				709C7D181F09498C002B9025 /* AppDelegate.swift */,
 				709C7D1A1F09498C002B9025 /* ViewController.swift */,
 				709C7D1C1F09498C002B9025 /* Main.storyboard */,
 				516C11711FD8379400AACA62 /* View.xib */,
-				516C116B1FD8050400AACA62 /* rain2.scnp */,
 				709C7D1F1F09498C002B9025 /* Assets.xcassets */,
 				709C7D211F09498D002B9025 /* LaunchScreen.storyboard */,
 				709C7D241F09498D002B9025 /* Info.plist */,
 				709C7D2A1F094BAE002B9025 /* Extensions.swift */,
 				709C7D2F1F094C5B002B9025 /* Nodes.swift */,
-				516C11671FD8034A00AACA62 /* spark.png */,
 				709C7D321F09619E002B9025 /* Media.scnassets */,
 			);
 			path = "AR-Portal";
@@ -112,11 +121,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Silicon.dk ApS";
 				TargetAttributes = {
 					709C7D141F09498C002B9025 = {
 						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -144,12 +154,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				516C11721FD8379400AACA62 /* View.xib in Resources */,
+				73B4B8861FD94DFE00B2CCD8 /* spark.png in Resources */,
 				709C7D331F09619E002B9025 /* Media.scnassets in Resources */,
-				516C116C1FD8050400AACA62 /* rain2.scnp in Resources */,
+				73B4B88D1FD9559200B2CCD8 /* fixed.dae in Resources */,
 				709C7D231F09498D002B9025 /* LaunchScreen.storyboard in Resources */,
-				516C11691FD8034A00AACA62 /* spark.png in Resources */,
 				709C7D201F09498C002B9025 /* Assets.xcassets in Resources */,
+				73B4B8871FD94DFE00B2CCD8 /* rain2.scnp in Resources */,
+				73B4B88B1FD9559200B2CCD8 /* demoNORM3.jpeg in Resources */,
 				709C7D1E1F09498C002B9025 /* Main.storyboard in Resources */,
+				73B4B88C1FD9559200B2CCD8 /* texture3.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +223,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -265,6 +280,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -297,11 +314,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = RXEGXZNFW2;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 89GHG7M8AP;
 				INFOPLIST_FILE = "AR-Portal/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "dinker.AR-Portal";
+				PRODUCT_BUNDLE_IDENTIFIER = "neo.AR-Portal";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -311,11 +331,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = RXEGXZNFW2;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 89GHG7M8AP;
 				INFOPLIST_FILE = "AR-Portal/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "dinker.AR-Portal";
+				PRODUCT_BUNDLE_IDENTIFIER = "neo.AR-Portal";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
