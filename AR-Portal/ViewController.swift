@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     @IBOutlet weak var planeSearchLabel: UILabel!
     @IBOutlet weak var sceneView: ARSCNView!
     
@@ -58,14 +58,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             animations[withKey] = animationObject
         }
     }
+
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        sceneView.delegate = self
+        sceneView.session.delegate = self
         sceneView.automaticallyUpdatesLighting = false
         
         let tap = UITapGestureRecognizer()
@@ -93,6 +93,84 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         sceneView.session.run(configuration)
     }
+    
+    func loadAnimations () {
+        // Load the character in the idle animation
+        let idleScene = SCNScene(named: "fixed.dae")!
+        let logoScene = SCNScene(named: "strangerthings.dae")!
+        
+        
+        
+        
+        
+        // This node will be parent of all the animation models
+        let node = SCNNode()
+        node.name = "demogorgon"
+        let logoNode = SCNNode()
+        logoNode.name = "logo"
+        
+        // Add all the child nodes to the parent node
+        for child in idleScene.rootNode.childNodes {
+            node.addChildNode(child)
+        }
+        
+        for child in logoScene.rootNode.childNodes {
+            logoNode.addChildNode(child)
+        }
+        
+        // Set up some properties
+        node.scale = SCNVector3(0.009, 0.009, 0.009)
+        node.position = SCNVector3(-0.9, 0, 0)
+        logoNode.scale = SCNVector3(0.003, 0.003, 0.003)
+        logoNode.position = SCNVector3(-0.5, 1.3, -1)
+        
+        node.renderingOrder = 200
+        logoNode.renderingOrder = 200
+        
+        //            let maskingXSegment = SCNBox(width: CGFloat(2),
+        //                                            height: CGFloat(2.2),
+        //                                            length: CGFloat(1),
+        //                                            chamferRadius: 0)
+        //            maskingXSegment.firstMaterial?.diffuse.contents = UIColor.red
+        //            maskingXSegment.firstMaterial?.transparency = 0.000001
+        //            maskingXSegment.firstMaterial?.writesToDepthBuffer = true
+        //
+        //            let maskingXSegmentNode = SCNNode(geometry: maskingXSegment)
+        //            maskingXSegmentNode.renderingOrder = 100   //everything inside the portal area must have higher rendering order...
+        //
+        //
+        //            maskingXSegmentNode.position = SCNVector3(true ? CGFloat(2) : -CGFloat(0.02),0,0)
+        //
+        //            let maskingYSegment = SCNBox(width: CGFloat(2.2) * CGFloat(3),
+        //                                         height: CGFloat(2.2) * CGFloat(3),
+        //                                         length: CGFloat(1) * CGFloat(3),
+        //                                         chamferRadius: 0)
+        //            maskingYSegment.firstMaterial?.diffuse.contents = UIColor.red
+        //            maskingYSegment.firstMaterial?.transparency = 0.000001
+        //            maskingYSegment.firstMaterial?.writesToDepthBuffer = true
+        //
+        //            let maskingYSegmentNode = SCNNode(geometry: maskingYSegment)
+        //            maskingYSegmentNode.renderingOrder = 100   //everything inside the portal area must have higher rendering order...
+        //
+        //
+        //            maskingYSegmentNode.position = SCNVector3(CGFloat(2) * 0.5, true ? CGFloat(0.02) : -CGFloat(0.02),0)
+        //            let wrapNode = SCNNode()
+        //            wrapNode.addChildNode(maskingXSegmentNode)
+        //            wrapNode.addChildNode(maskingYSegmentNode)
+        //            wrapNode.addChildNode(node)
+        
+        // Add the node to the scene
+        let floorNode = sceneView.scene.rootNode.childNode(withName: "floor", recursively: true)
+        floorNode?.addChildNode(node)
+        floorNode?.addChildNode(logoNode)
+        
+        
+        // Load all the DAE animations
+        loadAnimation(withKey: "test", sceneName: "fixed", animationIdentifier: "fixed-1")
+    }
+    
+    
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -126,7 +204,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         
         let wallNode = SCNNode()
+        wallNode.name = "wallNode"
         wallNode.position = newPlaneData.1
+        
         
         let sideLength = Nodes.WALL_LENGTH * 3
         let halfSideLength = sideLength * 0.5
@@ -176,80 +256,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         let floorNode = Nodes.plane(pieces: 3,
                                     maskYUpperSide: false)
+        floorNode.name = "floor"
         floorNode.position = SCNVector3(0, 0, 0)
-        
-        func loadAnimations () {
-            // Load the character in the idle animation
-            let idleScene = SCNScene(named: "fixed.dae")!
-            let logoScene = SCNScene(named: "strangerthings.dae")!
-            let castleScene = SCNScene(named: "strangerthings.dae")!
-
-            
-
-            
-            
-            // This node will be parent of all the animation models
-            let node = SCNNode()
-            let logoNode = SCNNode()
-            
-            // Add all the child nodes to the parent node
-            for child in idleScene.rootNode.childNodes {
-                node.addChildNode(child)
-            }
-            
-            for child in logoScene.rootNode.childNodes {
-                logoNode.addChildNode(child)
-            }
-            
-            // Set up some properties
-            node.scale = SCNVector3(0.009, 0.009, 0.009)
-            node.position = SCNVector3(0.9, 0, 0)
-            logoNode.scale = SCNVector3(0.003, 0.003, 0.003)
-            logoNode.position = SCNVector3(-0.5, 1.3, -1)
-
-            node.renderingOrder = 200
-            logoNode.renderingOrder = 200
-            
-//            let maskingXSegment = SCNBox(width: CGFloat(2),
-//                                            height: CGFloat(2.2),
-//                                            length: CGFloat(1),
-//                                            chamferRadius: 0)
-//            maskingXSegment.firstMaterial?.diffuse.contents = UIColor.red
-//            maskingXSegment.firstMaterial?.transparency = 0.000001
-//            maskingXSegment.firstMaterial?.writesToDepthBuffer = true
-//
-//            let maskingXSegmentNode = SCNNode(geometry: maskingXSegment)
-//            maskingXSegmentNode.renderingOrder = 100   //everything inside the portal area must have higher rendering order...
-//
-//
-//            maskingXSegmentNode.position = SCNVector3(true ? CGFloat(2) : -CGFloat(0.02),0,0)
-//
-//            let maskingYSegment = SCNBox(width: CGFloat(2.2) * CGFloat(3),
-//                                         height: CGFloat(2.2) * CGFloat(3),
-//                                         length: CGFloat(1) * CGFloat(3),
-//                                         chamferRadius: 0)
-//            maskingYSegment.firstMaterial?.diffuse.contents = UIColor.red
-//            maskingYSegment.firstMaterial?.transparency = 0.000001
-//            maskingYSegment.firstMaterial?.writesToDepthBuffer = true
-//
-//            let maskingYSegmentNode = SCNNode(geometry: maskingYSegment)
-//            maskingYSegmentNode.renderingOrder = 100   //everything inside the portal area must have higher rendering order...
-//
-//
-//            maskingYSegmentNode.position = SCNVector3(CGFloat(2) * 0.5, true ? CGFloat(0.02) : -CGFloat(0.02),0)
-//            let wrapNode = SCNNode()
-//            wrapNode.addChildNode(maskingXSegmentNode)
-//            wrapNode.addChildNode(maskingYSegmentNode)
-//            wrapNode.addChildNode(node)
-            
-            // Add the node to the scene
-            floorNode.addChildNode(node)
-            floorNode.addChildNode(logoNode)
-
-            
-            // Load all the DAE animations
-            loadAnimation(withKey: "test", sceneName: "fixed", animationIdentifier: "fixed-1")
-        }
+    
         
         loadAnimations()
         wallNode.addChildNode(floorNode)
@@ -279,8 +288,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                                    maskYUpperSide: true)
         rainNode.position = SCNVector3(0, Float(Nodes.WALL_HEIGHT - CGFloat(0.1)), 0)
 
-        let particleSystem = SCNParticleSystem(named: "rain2", inDirectory: nil)
-        rainNode.addParticleSystem(particleSystem!)
+//        let particleSystem = SCNParticleSystem(named: "rain2", inDirectory: nil)
+//        rainNode.addParticleSystem(particleSystem!)
 
 //        roofNode.addChildNode(particlesNode)
 //        sceneView.scene = scene
@@ -303,14 +312,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         let light = SCNLight()
         // [SceneKit] Error: shadows are only supported by spot lights and directional lights
-        light.type = .omni
+        light.type = .ambient
         light.spotInnerAngle = 120
         light.spotOuterAngle = 180
         light.zNear = 0.01
         light.zFar = 10
         light.castsShadow = true
         light.shadowRadius = 200
-        light.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        light.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
         light.shadowMode = .deferred
         let constraint = SCNLookAtConstraint(target: floorShadowNode)
         constraint.isGimbalLockEnabled = true
@@ -322,6 +331,52 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         lightNode.constraints = [constraint]
         sceneView.scene.rootNode.addChildNode(lightNode)
         
+        
+        
+    }
+    
+    var animate: Bool = false
+    
+    func session(_ session: ARSession, didUpdate frame: ARFrame) {
+        // Do something with the new transform
+        let currentTransform = frame.camera.transform
+        let currentTransformSCN = SCNMatrix4(currentTransform)
+        
+//        print("cam \(currentTransform)")
+//        for child in sceneView.scene.rootNode.childNodes{
+//            print(child)
+//        }
+        let cameraNode = SCNNode();
+        cameraNode.transform = currentTransformSCN
+        print(cameraNode.position)
+        
+        
+        if let wallNode = sceneView.scene.rootNode.childNode(withName: "wallNode", recursively: true) {
+            print("node position \(wallNode.position)")
+
+            let x = abs(cameraNode.position.x - wallNode.position.x)
+            let z = abs(cameraNode.position.z - wallNode.position.z)
+            if x > 1.5 || z > 1.5 {
+                print("out")
+                let demogorgonNode = sceneView.scene.rootNode.childNode(withName: "demogorgon", recursively: true)
+                let logoNode = sceneView.scene.rootNode.childNode(withName: "logo", recursively: true)
+                demogorgonNode?.removeFromParentNode()
+                logoNode?.removeFromParentNode()
+                animate = false
+            } else {
+                print("in")
+                if animate {
+                    
+                } else {
+                    loadAnimations()
+                    animate = true
+                }
+            }
+        
+//            print("node x \(x)")
+//            print("node z \(z)")
+        }
+
         
         
     }
@@ -364,5 +419,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             planeCount -= 1
         }
     }
+    
 
 }
