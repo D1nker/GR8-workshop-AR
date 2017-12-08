@@ -91,4 +91,45 @@ final class Nodes {
         
         return node
     }
+    
+    class func willSegmentNode(length:CGFloat = Nodes.WALL_LENGTH,
+                               height:CGFloat = Nodes.WALL_HEIGHT,
+                               maskXUpperSide:Bool = true) -> SCNNode {
+        let node = SCNNode()
+        
+        let wallSegment = SCNBox(width: Nodes.WALL_WIDTH,
+                                 height: height,
+                                 length: length,
+                                 chamferRadius: 0)
+        wallSegment.firstMaterial?.diffuse.contents = UIImage(named: "Media.scnassets/strangerthingswall.jpg")
+        wallSegment.firstMaterial?.ambientOcclusion.contents = UIImage(named: "Media.scnassets/strangerthingswall.jpg")
+        wallSegment.firstMaterial?.metalness.contents = UIImage(named: "Media.scnassets/slipperystonework-metalness.png")
+        wallSegment.firstMaterial?.normal.contents = UIImage(named: "Media.scnassets/slipperystonework-normal.png")
+        wallSegment.firstMaterial?.roughness.contents = UIImage(named: "Media.scnassets/slipperystonework-rough.png")
+        
+        wallSegment.firstMaterial?.writesToDepthBuffer = true
+        wallSegment.firstMaterial?.readsFromDepthBuffer = true
+        
+        let wallSegmentNode = SCNNode(geometry: wallSegment)
+        wallSegmentNode.renderingOrder = 200
+        
+        node.addChildNode(wallSegmentNode)
+        
+        let maskingWallSegment = SCNBox(width: Nodes.WALL_WIDTH,
+                                        height: height,
+                                        length: length,
+                                        chamferRadius: 0)
+        maskingWallSegment.firstMaterial?.diffuse.contents = UIColor.red
+        maskingWallSegment.firstMaterial?.transparency = 0.000001
+        maskingWallSegment.firstMaterial?.writesToDepthBuffer = true
+        
+        let maskingWallSegmentNode = SCNNode(geometry: maskingWallSegment)
+        maskingWallSegmentNode.renderingOrder = 100   //everything inside the portal area must have higher rendering order...
+        
+        
+        maskingWallSegmentNode.position = SCNVector3(maskXUpperSide ? Nodes.WALL_WIDTH : -Nodes.WALL_WIDTH,0,0)
+        node.addChildNode(maskingWallSegmentNode)
+        
+        return node
+    }
 }

@@ -143,7 +143,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sideAWallSegmentNode.position = SCNVector3(Float(Nodes.WALL_LENGTH) * -1.5, Float(Nodes.WALL_HEIGHT * 0.5), 0)
         wallNode.addChildNode(sideAWallSegmentNode)
         
-        let sideBWallSegmentNode = Nodes.wallSegmentNode(length: sideLength,
+        let sideBWallSegmentNode = Nodes.willSegmentNode(length: sideLength,
                                                          maskXUpperSide: true)
         sideBWallSegmentNode.position = SCNVector3(Float(Nodes.WALL_LENGTH) * 1.5, Float(Nodes.WALL_HEIGHT * 0.5), 0)
         wallNode.addChildNode(sideBWallSegmentNode)
@@ -182,6 +182,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             // Load the character in the idle animation
             let idleScene = SCNScene(named: "fixed.dae")!
             let logoScene = SCNScene(named: "strangerthings.dae")!
+            let castleScene = SCNScene(named: "strangerthings.dae")!
+
+            
 
             
             
@@ -199,7 +202,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             }
             
             // Set up some properties
-            node.scale = SCNVector3(0.01, 0.01, 0.01)
+            node.scale = SCNVector3(0.009, 0.009, 0.009)
+            node.position = SCNVector3(0.9, 0, 0)
             logoNode.scale = SCNVector3(0.003, 0.003, 0.003)
             logoNode.position = SCNVector3(-0.5, 1.3, -1)
 
